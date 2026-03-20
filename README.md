@@ -386,7 +386,9 @@ If this project helped you, please consider:
 
 ---
 
-**Made with ❤️ for the Telegram MTproxyMax**
+**Made with ❤️ for the Telegram MTProtoMax**
+
+🌍 **Available in:** [English](README.md) | [Русский](README_RU.md)
 
 [🔝 Back to top](#mtprotomax-metrics-viewer)
 ```
