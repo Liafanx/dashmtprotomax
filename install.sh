@@ -1,4 +1,3 @@
-```bash
 #!/usr/bin/env bash
 set -e
 
@@ -49,10 +48,8 @@ deactivate
 echo "       OK"
 
 echo "[4/6] Downloading viewer scripts..."
-curl -sSL -o "$INSTALL_DIR/metrics_viewer.py" \
-  https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/src/metrics_viewer.py
-curl -sSL -o "$INSTALL_DIR/metrics_live.py" \
-  https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/src/metrics_live.py
+curl -sSL -o "$INSTALL_DIR/metrics_viewer.py" https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/src/metrics_viewer.py
+curl -sSL -o "$INSTALL_DIR/metrics_live.py" https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/src/metrics_live.py
 
 if [ ! -f "$INSTALL_DIR/metrics_viewer.py" ]; then
     echo "ERROR: Failed to download metrics_viewer.py"
@@ -69,25 +66,21 @@ chmod +x "$INSTALL_DIR/metrics_live.py"
 echo "       OK"
 
 echo "[5/6] Creating wrapper scripts..."
-cat > "$INSTALL_DIR/metrics" << 'WRAPPER1'
-#!/bin/bash
-cd /root/Metrics
-source venv/bin/activate
-python3 metrics_viewer.py "$@"
-deactivate
-WRAPPER1
 
+echo '#!/bin/bash' > "$INSTALL_DIR/metrics"
+echo 'cd /root/Metrics' >> "$INSTALL_DIR/metrics"
+echo 'source venv/bin/activate' >> "$INSTALL_DIR/metrics"
+echo 'python3 metrics_viewer.py "$@"' >> "$INSTALL_DIR/metrics"
+echo 'deactivate' >> "$INSTALL_DIR/metrics"
 chmod +x "$INSTALL_DIR/metrics"
 
-cat > "$INSTALL_DIR/metrics-live" << 'WRAPPER2'
-#!/bin/bash
-cd /root/Metrics
-source venv/bin/activate
-python3 metrics_live.py
-deactivate
-WRAPPER2
-
+echo '#!/bin/bash' > "$INSTALL_DIR/metrics-live"
+echo 'cd /root/Metrics' >> "$INSTALL_DIR/metrics-live"
+echo 'source venv/bin/activate' >> "$INSTALL_DIR/metrics-live"
+echo 'python3 metrics_live.py' >> "$INSTALL_DIR/metrics-live"
+echo 'deactivate' >> "$INSTALL_DIR/metrics-live"
 chmod +x "$INSTALL_DIR/metrics-live"
+
 echo "       OK"
 
 echo "[6/6] Creating global commands..."
