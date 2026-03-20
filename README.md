@@ -355,7 +355,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📝 Changelog
 
-### v1.0.0 (2024-01-18)
+### v1.0.0 (20.03.2026)
 
 - ✨ Initial release
 - 📊 Static metrics viewer
