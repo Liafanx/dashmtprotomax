@@ -375,9 +375,6 @@ Created for the MTproxyMax.
 If this project helped you, please consider:
 
 - ⭐ **Starring** this repository
-- 🍴 **Forking** and contributing
-- 📢 **Sharing** with others
-- ☕ **Buying me a coffee** (if you feel generous)
 
 ---
 
