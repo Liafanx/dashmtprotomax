@@ -1,6 +1,5 @@
 # 📄 Полный README.md для GitHub
 
-```markdown
 # MTProtoMax Metrics Viewer
 
 Beautiful terminal dashboard for monitoring [MTProtoMax](https://github.com/SamNet-dev/MTProxyMax) Telegram proxy with Prometheus metrics.
