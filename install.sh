@@ -21,23 +21,38 @@ INSTALL_DIR="/root/Metrics"
 
 if [ -d "$INSTALL_DIR" ]; then
     echo ""
-    echo "WARNING: Directory $INSTALL_DIR already exists"
+    echo "================================================"
+    echo "  WARNING: Existing installation found!"
+    echo "================================================"
+    echo ""
+    echo "Directory $INSTALL_DIR already exists"
+    echo ""
+    echo "Options:"
+    echo "  1) Remove and reinstall (recommended)"
+    echo "  2) Cancel installation"
+    echo ""
+    read -p "Your choice (1 or 2): " choice
     
-    # Если stdin это терминал, спрашиваем пользователя
-    if [ -t 0 ]; then
-        read -p "Remove and reinstall? (y/n): " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            echo "Installation cancelled"
+    case $choice in
+        1)
+            echo ""
+            echo "Removing old installation..."
+            rm -rf "$INSTALL_DIR"
+            rm -f /usr/local/bin/metrics
+            rm -f /usr/local/bin/metrics-live
+            echo "OK - Old installation removed"
+            ;;
+        2)
+            echo ""
+            echo "Installation cancelled by user"
             exit 0
-        fi
-    else
-        # Если через pipe - автоматически удаляем
-        echo "Auto-removing for reinstallation..."
-    fi
-    
-    rm -rf "$INSTALL_DIR"
-    echo "Removed old installation"
+            ;;
+        *)
+            echo ""
+            echo "Invalid choice. Installation cancelled"
+            exit 1
+            ;;
+    esac
 fi
 
 echo ""
@@ -100,15 +115,16 @@ echo "================================================"
 echo "  Installation completed successfully!"
 echo "================================================"
 echo ""
-echo "Usage:"
+echo "Available commands:"
 echo "  metrics              - View all metrics"
 echo "  metrics-live         - Live auto-refresh mode"
-echo "  metrics --section    - View specific section"
 echo ""
-echo "Examples:"
+echo "Usage examples:"
 echo "  metrics"
 echo "  metrics --section status"
 echo "  metrics --section users"
+echo "  metrics-live"
 echo ""
-echo "Documentation: https://github.com/Liafanx/mtproxymax-metrics"
+echo "Documentation:"
+echo "  https://github.com/Liafanx/mtproxymax-metrics"
 echo ""
