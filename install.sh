@@ -22,39 +22,49 @@ INSTALL_DIR="/root/Metrics"
 if [ -d "$INSTALL_DIR" ]; then
     echo ""
     echo "================================================"
-    echo "  WARNING: Existing installation found!"
+    echo "  Existing installation found!"
     echo "================================================"
     echo ""
     echo "Directory: $INSTALL_DIR"
     echo ""
-    echo "Options:"
-    echo "  1) Remove and reinstall (recommended)"
-    echo "  2) Cancel installation"
-    echo ""
     
-    # Читаем из /dev/tty чтобы работало через pipe
-    read -p "Your choice (1 or 2): " choice < /dev/tty
-    
-    case $choice in
-        1)
-            echo ""
-            echo "Removing old installation..."
-            rm -rf "$INSTALL_DIR"
-            rm -f /usr/local/bin/metrics
-            rm -f /usr/local/bin/metrics-live
-            echo "OK - Old installation removed"
-            ;;
-        2)
-            echo ""
-            echo "Installation cancelled by user"
-            exit 0
-            ;;
-        *)
-            echo ""
-            echo "Invalid choice. Installation cancelled"
-            exit 1
-            ;;
-    esac
+    # Проверяем, есть ли интерактивный терминал
+    if [ ! -t 0 ]; then
+        # Если запущено ��ерез pipe - автоматически переустанавливаем
+        echo "Auto-reinstalling (non-interactive mode)..."
+        rm -rf "$INSTALL_DIR"
+        rm -f /usr/local/bin/metrics
+        rm -f /usr/local/bin/metrics-live
+        echo "Old installation removed"
+    else
+        # Если интерактивный режим - спрашиваем
+        echo "Options:"
+        echo "  1) Remove and reinstall (recommended)"
+        echo "  2) Cancel installation"
+        echo ""
+        read -p "Your choice (1 or 2): " choice
+        
+        case $choice in
+            1)
+                echo ""
+                echo "Removing old installation..."
+                rm -rf "$INSTALL_DIR"
+                rm -f /usr/local/bin/metrics
+                rm -f /usr/local/bin/metrics-live
+                echo "Done"
+                ;;
+            2)
+                echo ""
+                echo "Installation cancelled"
+                exit 0
+                ;;
+            *)
+                echo ""
+                echo "Invalid choice. Installation cancelled"
+                exit 1
+                ;;
+        esac
+    fi
 fi
 
 echo ""
