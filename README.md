@@ -1,4 +1,3 @@
-# 📄 Полный README.md для GitHub
 
 # MTProtoMax Metrics Viewer
 
