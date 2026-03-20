@@ -1,22 +1,30 @@
-# MTProtoMax Metrics Viewer
+# MTProxyMax Metrics Viewer
 
-Красивая терминальная панель для мониторинга [MTProtoMax](https://github.com/SamNet-dev/MTProxyMax) Telegram прокси с метриками Prometheus.
+> 🌍 **Переводы:** [English](README.md) | [Русский](README_RU.md)
+
+Красивая терминальная панель для мониторинга [MTProxyMax](https://github.com/SamNet-dev/MTProxyMax) Telegram прокси с метриками Prometheus.
 
 [![Версия](https://img.shields.io/badge/версия-1.0-blue.svg)](https://github.com/Liafanx/mtproxymax-metrics)
 [![Лицензия](https://img.shields.io/badge/лицензия-MIT-green.svg)](LICENSE)
-[![MTProtoMax](https://img.shields.io/badge/MTProtoMax-обязателен-orange.svg)](https://github.com/SamNet-dev/MTProxyMax)
+[![MTProxyMax](https://img.shields.io/badge/MTProxyMax-обязателен-orange.svg)](https://github.com/SamNet-dev/MTProxyMax)
 
 ## 📋 Содержание
 
-- [Возможности](#возможности)
-- [Требования](#требования)
-- [Установка](#установка)
-- [Использование](#использование)
-- [Удаление](#удаление)
-- [Настройка](#настройка)
-- [Решение проблем](#решение-проблем)
-- [Скриншоты](#скриншоты)
-- [Лицензия](#лицензия)
+- [Возможности](#-возможности)
+- [Требования](#-требования)
+- [Установка](#-установка)
+- [Использование](#-использование)
+- [Переустановка](#-переустановка)
+- [Удаление](#-удаление)
+- [Настройка](#-настройка)
+- [Решение проблем](#-решение-проблем)
+- [Скриншоты](#-скриншоты)
+- [Справочник метрик](#-справочник-метрик)
+- [Лицензия](#-лицензия)
+- [Связанные проекты](#-связанные-проекты)
+- [Поддержка](#-поддержка)
+- [Важные замечания](#-важные-замечания)
+- [История изменений](#-история-изменений)
 
 ## ✨ Возможности
 
@@ -30,16 +38,16 @@
 
 ## 📦 Требования
 
-> ⚠️ **Важно:** Этот инструмент требует установленный и запущенный [MTProtoMax](https://github.com/SamNet-dev/MTProxyMax) с включёнными метриками Prometheus.
+> ⚠️ **Важно:** Этот инструмент требует установленный и запущенный [MTProxyMax](https://github.com/SamNet-dev/MTProxyMax) с включёнными метриками Prometheus.
 
 ### Системные требования
 
 - **Операционная система:** Ubuntu 22.04/24.04 или Debian 11/12
 - **Python:** 3.10 или выше
 - **Доступ:** Root/sudo привилегии
-- **MTProtoMax:** [Установите MTProtoMax сначала](https://github.com/SamNet-dev/MTProxyMax)
+- **MTProxyMax:** [Установите MTProxyMax сначала](https://github.com/SamNet-dev/MTProxyMax)
 
-### Проверка доступности метрик MTProtoMax
+### Проверка доступности метрик MTProxyMax
 
 ```bash
 curl http://localhost:9090/metrics
@@ -134,7 +142,7 @@ metrics --section main
 
 ### Пользовательский URL метрик
 
-Если метрики MTProtoMax на другом хосте/порту:
+Если метрики MTProxyMax на другом хосте/порту:
 
 ```bash
 metrics --url http://ваш-сервер:9090/metrics
@@ -216,12 +224,13 @@ REFRESH_INTERVAL = 5  # секунды
 **Проблема:** `Error fetching metrics: Connection refused`
 
 **Решение:**
+
 1. Проверьте endpoint метрик:
    ```bash
    curl http://localhost:9090/metrics
    ```
 
-2. Проверьте конфигурацию MTProtoMax на порт метрик
+2. Проверьте конфигурацию MTProxyMax на порт метрик
 
 ### Ошибка Python зависимостей
 
@@ -273,7 +282,7 @@ sudo chmod +x /root/Metrics/metrics*
 ```
 ================================================
   PROMETHEUS METRICS VIEWER
-  Панель метрик прокси MTProtoMax
+  Панель метрик прокси MTProxyMax
 ================================================
 
 ┌─ Сводка ───────────────────────────────────┐
@@ -293,12 +302,12 @@ sudo chmod +x /root/Metrics/metrics*
 └────────────────────────────────────────────┘
 
 ┌─ Статистика пользователей ─────────────────┐
-│ Польз-ль│ Соединений │ Активно │ RX      │
-├─────────┼────────────┼─────────┼─────────┤
-│ admin   │ 25 234     │ 15      │ 45.2 ГБ │
-│ user1   │ 18 456     │ 8       │ 32.1 ГБ │
-│ user2   │ 12 890     │ 3       │ 18.5 ГБ │
-└─────────┴────────────┴─────────┴─────────┘
+│ Пользователь │ Соединений │ Активно │ RX   │
+├──────────────┼────────────┼─────────┼──────┤
+│ admin        │ 25 234     │ 15      │45 ГБ │
+│ user1        │ 18 456     │ 8       │32 ГБ │
+│ user2        │ 12 890     │ 3       │18 ГБ │
+└──────────────┴────────────┴─────────┴──────┘
 ```
 
 ### Live режим
@@ -323,7 +332,7 @@ sudo chmod +x /root/Metrics/metrics*
 | `telemt_user_msgs_from_client` | Сообщений получено на пользователя |
 | `telemt_user_msgs_to_client` | Сообщений отправлено на пользователя |
 
-Полную документацию метрик смотрите в [Документации MTProtoMax](https://github.com/SamNet-dev/MTProxyMax).
+Полную документацию метрик смотрите в [Документации MTProxyMax](https://github.com/SamNet-dev/MTProxyMax).
 
 ## 📄 Лицензия
 
@@ -331,7 +340,7 @@ sudo chmod +x /root/Metrics/metrics*
 
 ## 🔗 Связанные проекты
 
-- **[MTProtoMax](https://github.com/SamNet-dev/MTProxyMax)** - Быстрый и безопасный MTProto прокси (Обязателен)
+- **[MTProxyMax](https://github.com/SamNet-dev/MTProxyMax)** - Быстрый и безопасный MTProto прокси (Обязателен)
 - **[Prometheus](https://prometheus.io/)** - Инструментарий мониторинга и оповещений
 
 ## 💬 Поддержка
@@ -343,8 +352,8 @@ sudo chmod +x /root/Metrics/metrics*
 
 ## ⚠️ Важные замечания
 
-1. **Требуется MTProtoMax:** Этот viewer работает только с [MTProtoMax](https://github.com/SamNet-dev/MTProxyMax). Установите его сначала.
-2. **Метрики должны быть включены:** Убедитесь, что метрики Prometheus включены в конфигурации MTProtoMax.
+1. **Требуется MTProxyMax:** Этот viewer работает только с [MTProxyMax](https://github.com/SamNet-dev/MTProxyMax). Установите его сначала.
+2. **Метрики должны быть включены:** Убедитесь, что метрики Prometheus включены в конфигурации MTProxyMax.
 3. **Порт по умолчанию 9090:** Если вы изменили порт метрик, используйте флаг `--url`.
 4. **Root доступ:** Установка требует root/sudo привилегий.
 
@@ -363,7 +372,7 @@ sudo chmod +x /root/Metrics/metrics*
 
 ## 👤 Автор
 
-Создано для сообщества MTProtoMax.
+Создано для сообщества MTProxyMax.
 
 ## 🌟 Поддержите проект
 
@@ -373,14 +382,9 @@ sudo chmod +x /root/Metrics/metrics*
 
 ---
 
-**Сделано с ❤️ для сообщества Telegram MTProtoMax**
+**Сделано с ❤️ для сообщества Telegram MTProxyMax**
 
-[🔝 Вернуться наверх](#mtprotomax-metrics-viewer)
+🌍 **Доступно на:** [English](README.md) | [Русский](README_RU.md)
 
----
-
-## 🌍 Translations
-
-- [English](README.md)
-- [Русский](README_RU.md)
+[🔝 Вернуться наверх](#mtproxymax-metrics-viewer)
 ```
