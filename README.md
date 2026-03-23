@@ -4,7 +4,7 @@
 
 Beautiful terminal dashboard for monitoring [MTProxyMax](https://github.com/SamNet-dev/MTProxyMax) Telegram proxy with Prometheus metrics.
 
-[![Version](https://img.shields.io/badge/version-1.0-blue.svg)](https://github.com/Liafanx/mtproxymax-metrics)
+[![Version](https://img.shields.io/badge/version-1.1.1-blue.svg)](https://github.com/Liafanx/mtproxymax-metrics)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![MTProxyMax](https://img.shields.io/badge/MTProxyMax-required-orange.svg)](https://github.com/SamNet-dev/MTProxyMax)
 
