@@ -153,7 +153,7 @@ metrics --url http://ваш-сервер:9090/metrics
 Для переустановки или обновления до последней версии:
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)"
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)" -- --auto
 ```
 
 Это автоматически удалит старую установку и установит свежую версию.
