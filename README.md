@@ -57,9 +57,9 @@ If you see metrics output, you're ready to install the viewer.
 
 ## 🚀 Installation
 
-### Quick Install (Automatic)
+### Quick Install
 
-Install with automatic reinstall (recommended):
+Install with reinstall (recommended):
 
 ```bash
 sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)"
