@@ -62,13 +62,13 @@ curl http://localhost:9090/metrics
 Установка с автоматической переустановкой (рекомендуется):
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)" -- --auto
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)"
 ```
 
 Или используя wget:
 
 ```bash
-sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)" -- --auto
+sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)"
 ```
 
 ### Интерактивная установка (с подтверждением)
@@ -153,7 +153,7 @@ metrics --url http://ваш-сервер:9090/metrics
 Для переустановки или обновления до последней версии:
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)" -- --auto
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)"
 ```
 
 Это автоматически удалит старую установку и установит свежую версию.
