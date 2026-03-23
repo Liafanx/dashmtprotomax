@@ -4,7 +4,7 @@
 
 Красивая терминальная панель для мониторинга [MTProxyMax](https://github.com/SamNet-dev/MTProxyMax) Telegram прокси с метриками Prometheus.
 
-[![Версия](https://img.shields.io/badge/версия-1.0-blue.svg)](https://github.com/Liafanx/mtproxymax-metrics)
+[![Версия](https://img.shields.io/badge/версия-1.1.1-blue.svg)](https://github.com/Liafanx/mtproxymax-metrics)
 [![Лицензия](https://img.shields.io/badge/лицензия-MIT-green.svg)](LICENSE)
 [![MTProxyMax](https://img.shields.io/badge/MTProxyMax-обязателен-orange.svg)](https://github.com/SamNet-dev/MTProxyMax)
 
