@@ -62,13 +62,13 @@ If you see metrics output, you're ready to install the viewer.
 Install with automatic reinstall (recommended):
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)" -- --auto
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)"
 ```
 
 Or using wget:
 
 ```bash
-sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)" -- --auto
+sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)"
 ```
 
 ### Interactive Install (with confirmation)
@@ -153,7 +153,7 @@ metrics --url http://your-server:9090/metrics
 To reinstall or update to the latest version:
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)" -- --auto
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)"
 ```
 
 This will automatically remove the old installation and install fresh.
@@ -359,6 +359,41 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📝 Changelog
 
+### v1.1.1 (23.03.2026)
+
+- 👥 **Users table:** added TCP Limit column (loaded from API `/v1/users`)
+- 🔗 **API integration:** `--api` flag to specify Control API URL for user limits
+- 🔧 **Fallback:** shows `-` when API is unavailable
+
+### v1.1.0 (23.03.2026)
+
+#### metrics_viewer.py
+- 📊 **Status panel:** added active/ME/direct connections breakdown
+- 📈 **System Metrics:** added relay adaptive, reconnect evict/stale, failfast metrics
+- 🆕 **New section: Upstream Attempts** - attempts per request distribution
+- 🔄 **ME Statistics:** added KDF drift, async recovery, writers active/warm, uncompensated removals
+- 🆕 **New section: ME Keepalive** - sent/failed/pong/timeout
+- 🆕 **New section: Single-Endpoint Outage** - outage enter/exit, shadow rotations
+- 🎯 **Writer Pick:** added Mode column with result descriptions
+- 🆕 **New section: Adaptive Floor** - CPU cores, caps, target writers, blocks
+- 🔧 **Pool Management:** added soft evict, close signal drops, reap progress
+- 🆕 **New section: Security/Desync** - padding, desync, suppressed
+- 🆕 **New section: Relay Adaptive** - promotions/demotions
+- 👥 **Users:** added IPs and IP Limit columns
+- 🔐 **SOCKS KDF:** added descriptions for each policy outcome
+- ⚙️ **New --section options:** `floor`, `outage`, `security`, `relay`
+
+#### metrics_live.py
+- 📊 **Header bar:** added active connections count and writers active/warm
+- 🔄 **System panel:** active connections with ME/Direct split, writers count, quarantine counter
+- 👥 **Users panel:** added unique active IPs column
+
+#### install.sh
+- 🔍 **Version checking:** compares local vs remote version before install
+- 🔄 **Update prompt:** shows "Update available: X -> Y" when new version exists
+- ⚡ **Auto mode:** `--auto` flag skips all prompts for CI/scripted usage
+- 📄 **Version file:** saves installed version to `/root/Metrics/.version`
+
 ### v1.0.0 (20.03.2026)
 
 - ✨ Initial release
@@ -369,7 +404,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 🔄 ME statistics
 - 🎯 SOCKS KDF policy
 - 🔧 Pool management stats
-
+  
 ## 👤 Author
 
 Created for the MTProxyMax community.
