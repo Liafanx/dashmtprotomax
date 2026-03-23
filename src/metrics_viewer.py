@@ -8,8 +8,10 @@ from rich import box
 from collections import defaultdict
 import sys
 import argparse
+import json
 
 METRICS_URL = "http://localhost:9090/metrics"
+API_URL = "http://localhost:9091"
 console = Console()
 
 def fetch_metrics(url):
@@ -20,6 +22,26 @@ def fetch_metrics(url):
     except requests.RequestException as e:
         console.print(f"[red]Error fetching metrics: {e}[/red]")
         sys.exit(1)
+
+def fetch_api_users(api_url):
+    try:
+        response = requests.get(f"{api_url}/v1/users", timeout=5)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('ok') and 'data' in data:
+                result = {}
+                for user in data['data']:
+                    username = user.get('username', '')
+                    result[username] = {
+                        'max_tcp_conns': user.get('max_tcp_conns'),
+                        'max_unique_ips': user.get('max_unique_ips'),
+                        'data_quota_bytes': user.get('data_quota_bytes'),
+                        'expiration': user.get('expiration_rfc3339'),
+                    }
+                return result
+    except:
+        pass
+    return {}
 
 def parse_metrics(text):
     metrics = {}
@@ -351,7 +373,7 @@ def create_adaptive_floor_table(metrics):
 
     return table
 
-def create_users_table(metrics):
+def create_users_table(metrics, api_users):
     table = Table(title="User Statistics", box=box.ROUNDED, show_header=True, header_style="bold magenta")
     table.add_column("User", style="cyan", min_width=12)
     table.add_column("Total Conn", justify="right", style="green")
@@ -370,7 +392,6 @@ def create_users_table(metrics):
         'telemt_user_octets_from_client', 'telemt_user_octets_to_client',
         'telemt_user_msgs_from_client', 'telemt_user_msgs_to_client',
         'telemt_user_unique_ips_current', 'telemt_user_unique_ips_limit',
-        'telemt_user_max_tcp_conns',
     ]:
         if mn in metrics:
             for item in metrics[mn]:
@@ -386,8 +407,13 @@ def create_users_table(metrics):
     for user, data in sorted_users:
         ip_limit = data.get('telemt_user_unique_ips_limit', '0')
         ip_limit_display = 'unlimited' if ip_limit == '0' else fv(ip_limit)
-        tcp_limit = data.get('telemt_user_max_tcp_conns', '0')
-        tcp_limit_display = 'unlimited' if tcp_limit == '0' else fv(tcp_limit)
+
+        tcp_limit_display = '-'
+        if user in api_users and api_users[user].get('max_tcp_conns') is not None:
+            tcp_limit_display = fv(str(api_users[user]['max_tcp_conns']))
+        elif user in api_users and api_users[user].get('max_tcp_conns') is None:
+            tcp_limit_display = 'unlimited'
+
         table.add_row(
             user,
             fv(data.get('telemt_user_connections_total', '0')),
@@ -488,6 +514,7 @@ def create_relay_table(metrics):
 def main():
     parser = argparse.ArgumentParser(description='MTProxyMax Metrics Viewer')
     parser.add_argument('--url', default=METRICS_URL, help='Metrics URL')
+    parser.add_argument('--api', default=API_URL, help='API URL for user limits')
     parser.add_argument(
         '--section',
         choices=['all', 'status', 'main', 'upstream', 'me', 'users', 'socks', 'pool', 'security', 'floor', 'outage', 'relay'],
@@ -500,6 +527,10 @@ def main():
 
     raw = fetch_metrics(args.url)
     m, h = parse_metrics(raw)
+
+    api_users = {}
+    if args.section in ['all', 'users']:
+        api_users = fetch_api_users(args.api)
 
     console.clear()
     console.print(create_header())
@@ -552,7 +583,11 @@ def main():
         console.print()
 
     if args.section in ['all', 'users']:
-        console.print(create_users_table(m))
+        console.print(create_users_table(m, api_users))
+        if api_users:
+            console.print(f"[dim]TCP limits loaded from API: {args.api}[/dim]")
+        else:
+            console.print(f"[dim]TCP limits: API not available at {args.api}[/dim]")
         console.print()
 
     console.print(f"[dim]Source: {args.url}[/dim]")
