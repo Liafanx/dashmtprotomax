@@ -71,15 +71,6 @@ Or using wget:
 sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)"
 ```
 
-### Interactive Install (with confirmation)
-
-Download and run installer with prompts:
-
-```bash
-wget https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh
-sudo bash install.sh
-```
-
 ### Install via Git
 
 ```bash
