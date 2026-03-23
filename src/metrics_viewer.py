@@ -356,6 +356,7 @@ def create_users_table(metrics):
     table.add_column("User", style="cyan", min_width=12)
     table.add_column("Total Conn", justify="right", style="green")
     table.add_column("Active", justify="right", style="yellow")
+    table.add_column("TCP Limit", justify="right", style="dim")
     table.add_column("RX", justify="right", style="blue")
     table.add_column("TX", justify="right", style="blue")
     table.add_column("Msgs In", justify="right", style="dim")
@@ -369,6 +370,7 @@ def create_users_table(metrics):
         'telemt_user_octets_from_client', 'telemt_user_octets_to_client',
         'telemt_user_msgs_from_client', 'telemt_user_msgs_to_client',
         'telemt_user_unique_ips_current', 'telemt_user_unique_ips_limit',
+        'telemt_user_max_tcp_conns',
     ]:
         if mn in metrics:
             for item in metrics[mn]:
@@ -384,10 +386,13 @@ def create_users_table(metrics):
     for user, data in sorted_users:
         ip_limit = data.get('telemt_user_unique_ips_limit', '0')
         ip_limit_display = 'unlimited' if ip_limit == '0' else fv(ip_limit)
+        tcp_limit = data.get('telemt_user_max_tcp_conns', '0')
+        tcp_limit_display = 'unlimited' if tcp_limit == '0' else fv(tcp_limit)
         table.add_row(
             user,
             fv(data.get('telemt_user_connections_total', '0')),
             fv(data.get('telemt_user_connections_current', '0')),
+            tcp_limit_display,
             fb(data.get('telemt_user_octets_from_client', '0')),
             fb(data.get('telemt_user_octets_to_client', '0')),
             fv(data.get('telemt_user_msgs_from_client', '0')),
