@@ -359,6 +359,41 @@ sudo chmod +x /root/Metrics/metrics*
 
 ## 📝 История изменений
 
+### v1.1.1 (23.03.2026)
+
+- 👥 **Таблица пользователей:** добавлен столбец TCP Limit (загружается из API `/v1/users`)
+- 🔗 **Интеграция с API:** флаг `--api` для указания URL Control API
+- 🔧 **Fallback:** показывает `-` когда API недоступен
+
+### v1.1.0 (23.03.2026)
+
+#### metrics_viewer.py
+- 📊 **Панель статуса:** добавлена разбивка active/ME/direct соединений
+- 📈 **Системные метрики:** добавлены relay adaptive, reconnect evict/stale, failfast
+- 🆕 **Новая секция: Upstream Attempts** - распределение попыток на запрос
+- 🔄 **ME статистика:** добавлены KDF drift, async recovery, writers active/warm, некомпенсированные удаления
+- 🆕 **Новая секция: ME Keepalive** - sent/failed/pong/timeout
+- 🆕 **Новая секция: Single-Endpoint Outage** - outage enter/exit, ротация теневых writer
+- 🎯 **Writer Pick:** добавлен столбец Mode с описаниями результатов
+- 🆕 **Новая секция: Adaptive Floor** - CPU ядра, лимиты, целевые writers, блокировки
+- 🔧 **Pool Management:** добавлены soft evict, close signal drops, reap progress
+- 🆕 **Новая секция: Security/Desync** - padding, desync, suppressed
+- 🆕 **Новая секция: Relay Adaptive** - повышения/понижения уровня
+- 👥 **Пользователи:** добавлены столбцы IPs и IP Limit
+- 🔐 **SOCKS KDF:** добавлены описания для каждой политики
+- ⚙️ **Новые опции --section:** `floor`, `outage`, `security`, `relay`
+
+#### metrics_live.py
+- 📊 **Заголовок:** добавлено количество активных соединений и writers active/warm
+- 🔄 **Системная панель:** активные соединения с разбивкой ME/Direct, счётчик writers, карантин
+- 👥 **Панель пользователей:** добавлен столбец уникальных активных IP
+
+#### install.sh
+- 🔍 **Проверка версии:** сравнение локальной и удалённой версии перед установкой
+- 🔄 **Запрос обновления:** показывает "Доступно обновление: X -> Y"
+- ⚡ **Автоматический режим:** флаг `--auto` пропускает все запросы
+- 📄 **Файл версии:** сохраняет установленную версию в `/root/Metrics/.version`
+
 ### v1.0.0 (20.03.2026)
 
 - ✨ Первый релиз
