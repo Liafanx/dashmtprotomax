@@ -59,7 +59,7 @@ curl http://localhost:9090/metrics
 
 ### Быстрая установка (Автоматическая)
 
-Установка с автоматической переустановкой (рекомендуется):
+Установка с возможностью переустановки (рекомендуется):
 
 ```bash
 sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)"
@@ -69,15 +69,6 @@ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Liafanx/mtproxymax-
 
 ```bash
 sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh)"
-```
-
-### Интерактивная установка (с подтверждением)
-
-Скачать и запустить установщик с запросами:
-
-```bash
-wget https://raw.githubusercontent.com/Liafanx/mtproxymax-metrics/main/install.sh
-sudo bash install.sh
 ```
 
 ### Установка через Git
