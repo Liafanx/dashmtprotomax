@@ -355,6 +355,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 👥 **Users table:** added TCP Limit column (loaded from API `/v1/users`)
 - 🔗 **API integration:** `--api` flag to specify Control API URL for user limits
 - 🔧 **Fallback:** shows `-` when API is unavailable
+- ⚡ Smart dependency check: system packages (python3, curl, etc.) are only installed if missing
+- 🚀 Faster reinstalls: skips unnecessary apt-get update when all dependencies present
+- 🐛 Bugfix: fixed typo in install directory check
 
 ### v1.1.0 (23.03.2026)
 
